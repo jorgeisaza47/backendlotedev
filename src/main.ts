@@ -35,23 +35,12 @@ import * as fs from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.setGlobalPrefix('api');
 
-  const angularDistPath = join(
-    __dirname,
-    '..',
-    '..',
-    'frontendlote',
-    'dist',
-    'frontendlote',
-    'browser',
-  ); // <-- cambia 'mi-app' según tu caso
-
-  app.useStaticAssets(angularDistPath);
-  app.setBaseViewsDir(angularDistPath);
-
-  // Manejo correcto de rutas Angular (SPA)
-  app.use('*', (req, res) => {
-    res.sendFile(join(angularDistPath, 'index.html'));
+  app.enableCors({
+    origin: 'http://localhost:4200', // Permite solicitudes desde este origen
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos HTTP permitidos
+    credentials: true, // Permite el envío de credenciales (cookies, headers de autenticación)
   });
 
   await app.listen(3001, '0.0.0.0');

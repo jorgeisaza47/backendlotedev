@@ -1,0 +1,20 @@
+{
+  "routes": [
+    "/aguacate",
+    "/aguacate-list",
+    "/cafe",
+    "/crear-lote",
+    "/crear-transaccion",
+    "/list",
+    "/lote-list",
+    "/lotes",
+    "/lotes/aguacate",
+    "/lotes/aguacate-list",
+    "/lotes/cafe",
+    "/lotes/crear-lote",
+    "/lotes/crear-transaccion",
+    "/lotes/lote-list",
+    "/lotes/movimiento-list",
+    "/movimiento-list"
+  ]
+}
