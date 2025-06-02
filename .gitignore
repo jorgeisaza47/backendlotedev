@@ -3,6 +3,10 @@
 /node_modules
 /build
 
+# Ignore PostgreSQL runtime stat files
+postgres/pg_stat_tmp/
+
+
 # Logs
 logs
 *.log
