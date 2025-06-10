@@ -20,7 +20,10 @@ import { join } from 'path';
         index: 'index.csr.html', // Indica que use este archivo como índice
       },
     }),
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: '.env.prod',
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -29,7 +32,7 @@ import { join } from 'path';
       password: process.env.DB_PASSWORD,
       username: process.env.DB_USERNAME,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: process.env.DB_SYNCHRONIZE === 'true',
     }),
     LotesModule,
     TransactionsModule,
