@@ -6,7 +6,9 @@ import {
   IsDate,
   IsArray,
   IsOptional,
+  ValidateNested,
 } from 'class-validator';
+import { FumigacionDto } from './fumigacion-lote.dto';
 export class CreateLoteDto {
   @IsString()
   name: string;
@@ -37,10 +39,10 @@ export class CreateLoteDto {
   @IsOptional()
   reseedingDate?: Date[];
 
-  @IsOptional()
   @IsArray()
-  @IsDate({ each: true })
-  fumigatedDate?: Date[];
+  @ValidateNested({ each: true })
+  @Type(() => FumigacionDto)
+  fumigatedDate: FumigacionDto[];
 
   @IsString({ each: true })
   @IsArray()
