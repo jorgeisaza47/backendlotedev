@@ -135,7 +135,7 @@ export class LotesService {
       fertilizerDate: fertilizerDate ?? existingBatch.fertilizerDate,
       plantingDate: plantingDate ?? existingBatch.plantingDate,
       cleanedDate: cleanedDate ?? existingBatch.cleanedDate,
-      fumigatedDate: fumigatedDate ?? existingBatch.fertilizerDate,
+      fumigatedDate: fumigatedDate ?? existingBatch.fumigatedDate,
       // fertilizerDate: fertilizerDate
       //   ? [...(existingBatch.fertilizerDate || []), ...fertilizerDate]
       //   : existingBatch.fertilizerDate,

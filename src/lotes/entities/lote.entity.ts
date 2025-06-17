@@ -39,8 +39,11 @@ export class Lote {
   })
   reseedingDate?: Date[]; //fecha de resiembra
 
-  @Column({ type: 'date', array: true })
-  fumigatedDate?: Date[];
+  @Column('jsonb')
+  fumigatedDate: {
+    date: Date;
+    veneno: string;
+  }[];
 
   @OneToMany(() => LoteImage, (loteImage) => loteImage.lote, {
     cascade: true,

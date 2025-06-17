@@ -16,6 +16,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+postgres/
+postgres/pg_stat_tmp/
+
 # OS
 .DS_Store
 
