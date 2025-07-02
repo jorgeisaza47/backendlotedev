@@ -1,24 +1,21 @@
-# Etapa 1: Build
-FROM node:18-alpine as builder
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
-# Etapa 2: Producción
+# Usa una imagen de Node.js slim para producción
 FROM node:18-alpine
 
-WORKDIR /app
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
+# Establece el directorio de trabajo
+WORKDIR /usr/src/app
 
-# 👇 Copia el .env.prod directamente desde tu host
-COPY .env.prod .env.prod
+# Copia package.json y package-lock.json primero para aprovechar el caché de Docker
+COPY package*.json ./
 
-ENV NODE_ENV=production
+# Instala solo las dependencias de producción
+RUN npm ci --only=production
 
-CMD ["node", "dist/main"]
+# Copia el resto del código de tu aplicación
+COPY . .
 
+# Expone el puerto en el que escucha tu aplicación
+EXPOSE 3000
+
+# Comando para ejecutar tu aplicación
+CMD ["node", "dist/main.js"]
+ # Reemplaza con tu archivo de entrada real (ej. server.js, app.js)
